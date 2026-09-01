@@ -9,7 +9,7 @@
 - [x] OrdersService calls InventoryService via HttpClientFactory
 - [x] SQLite persistence with seed data
 - [x] Deduct stock on order creation
-- [ ] Docker Compose setup
+- [x] Docker Compose setup
 
 **Optional (from guide):**
 - [ ] Endpoints PUT/DELETE for inventory management
