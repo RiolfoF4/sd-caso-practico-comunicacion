@@ -32,6 +32,8 @@ namespace OrdersService.Services
             _ordersDbContext.Orders.Add(order);
             await _ordersDbContext.SaveChangesAsync();
 
+            await _inventory.DeductStockAsync(request.ProductId, request.Quantity);
+
             return new OrderResponse(order.Id, order.ProductId, order.Quantity, order.Status, order.CreatedAt);
         }
     }

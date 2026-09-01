@@ -22,5 +22,13 @@ namespace InventoryService.Controllers
             if (result is null) return NotFound();
             return Ok(result);
         }
+
+        [HttpPost("deduct")]
+        public async Task<IActionResult> DeductStock([FromBody] DeductStockRequest request)
+        {
+            var success = await _inventoryService.DeductStockAsync(request.ProductId, request.Quantity);
+            if (!success) return BadRequest(new { Message = "Stock insuficiente" });
+            return Ok(new { Message = "Stock descontado" });
+        }
     }
 }

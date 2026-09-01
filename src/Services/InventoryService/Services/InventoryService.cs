@@ -20,5 +20,15 @@ namespace InventoryService.Services
 
             return new InventoryResponse(product.Id, product.Stock, product.Stock > 0);
         }
+
+        public async Task<bool> DeductStockAsync(int productId, int quantity)
+        {
+            Product? product = await _inventoryDbContext.Products.FindAsync(productId);
+            if (product is null || product.Stock < quantity) return false;
+
+            product.Stock -= quantity;
+            await _inventoryDbContext.SaveChangesAsync();
+            return true;
+        }
     }
 }
