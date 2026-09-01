@@ -22,6 +22,12 @@ Distributed systems course project (UTN FRCU - ISI). Implements synchronous and 
 - **No XML doc comments** unless explicitly requested
 - **Nullable reference types** enabled project-wide
 
+## Running the Services
+
+- Use Docker Compose: `docker compose up -d --build` to start, `docker compose down` to stop
+- Ports: OrdersService on `http://localhost:5000`, InventoryService on `http://localhost:5001`
+- Never run `dotnet run` directly: the ASP.NET Core processes never exit and block the session
+
 ## Commits
 
 Use Conventional Commits.
