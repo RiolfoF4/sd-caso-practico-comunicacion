@@ -7,4 +7,7 @@
   <Folder Name="/src/Shared/">
     <Project Path="src/Shared/Contracts/Contracts.csproj" Id="69978191-b03e-41ed-a4e8-853ff4c123f4" />
   </Folder>
+  <Project Path="docker-compose.dcproj">
+    <Build />
+  </Project>
 </Solution>

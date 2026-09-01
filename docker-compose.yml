@@ -1,0 +1,15 @@
+name: sd-caso-practico-comunicacion
+
+services:
+  inventoryservice:
+    image: ${DOCKER_REGISTRY-}inventoryservice
+    build:
+      context: .
+      dockerfile: src/Services/InventoryService/Dockerfile
+
+  ordersservice:
+    image: ${DOCKER_REGISTRY-}ordersservice
+    build:
+      context: .
+      dockerfile: src/Services/OrdersService/Dockerfile
+

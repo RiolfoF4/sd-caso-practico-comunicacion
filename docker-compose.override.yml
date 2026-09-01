@@ -1,0 +1,16 @@
+services:
+  inventoryservice:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+    ports:
+      - "5001:8080"
+
+  ordersservice:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - Services__InventoryApi__BaseUrl=http://inventoryservice:8080
+    ports:
+      - "5000:8080"
+
