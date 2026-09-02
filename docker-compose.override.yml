@@ -11,6 +11,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=8080
       - Services__InventoryApi__BaseUrl=http://inventoryservice:8080
+      - RabbitMQ__HostName=rabbitmq 
     ports:
       - "5000:8080"
 

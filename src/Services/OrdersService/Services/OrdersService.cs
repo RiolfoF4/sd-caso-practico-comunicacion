@@ -8,11 +8,16 @@ namespace OrdersService.Services
     {
         private readonly OrdersDbContext _ordersDbContext;
         private readonly IInventoryClient _inventory;
+        private readonly IOrdersPublisher _publisher;
 
-        public OrdersService(OrdersDbContext ordersDbContext, IInventoryClient inventory)
+        public OrdersService(
+            OrdersDbContext ordersDbContext,
+            IInventoryClient inventory,
+            IOrdersPublisher publisher)
         {
             _ordersDbContext = ordersDbContext;
             _inventory = inventory;
+            _publisher = publisher;
         }
 
         public async Task<OrderResponse?> CreateOrderAsync(OrderRequest request)
@@ -33,6 +38,13 @@ namespace OrdersService.Services
             await _ordersDbContext.SaveChangesAsync();
 
             await _inventory.DeductStockAsync(request.ProductId, request.Quantity);
+
+            var orderCreatedEvent = new OrderCreatedEvent(
+                order.Id,
+                order.ProductId,
+                order.Quantity,
+                order.CreatedAt);
+            await _publisher.PublishOrderCreatedAsync(orderCreatedEvent);
 
             return new OrderResponse(order.Id, order.ProductId, order.Quantity, order.Status, order.CreatedAt);
         }

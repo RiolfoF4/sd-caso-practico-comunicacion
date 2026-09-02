@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using OrdersService.Data;
 using OrdersService.Services;
+using RabbitMQ.Client;
 using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,6 +20,13 @@ builder.Services.AddHttpClient<IInventoryClient, InventoryClient>((sp, client) =
     client.BaseAddress = new Uri(config["Services:InventoryApi:BaseUrl"]!);
 });
 builder.Services.AddScoped<IOrdersService, OrdersService.Services.OrdersService>();
+
+var factory = new ConnectionFactory
+{
+    HostName = builder.Configuration["RabbitMQ:HostName"] ?? "localhost"
+};
+builder.Services.AddSingleton<IConnection>(factory.CreateConnectionAsync().GetAwaiter().GetResult());
+builder.Services.AddSingleton<IOrdersPublisher, OrdersPublisher>();
 
 var app = builder.Build();
 
