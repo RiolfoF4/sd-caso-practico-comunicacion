@@ -17,16 +17,16 @@
 
 ## Exercise 2 - Asynchronous Communication with RabbitMQ
 
-- [ ] Set up RabbitMQ with Docker Compose
-- [ ] OrdersService publishes "Order Created" message
-- [ ] NotificationService consumes messages
-- [ ] NotificationService sends email (simulated)
+- [x] Set up RabbitMQ with Docker Compose
+- [x] OrdersService publishes "Order Created" message
+- [x] NotificationService consumes messages
+- [x] NotificationService sends email (simulated)
 
 **Optional (from guide):**
-- [ ] Durable queues and persistent messages
-- [ ] Manual acknowledgments
+- [x] Durable queues and persistent messages
+- [x] Manual acknowledgments
 - [ ] Multiple consumers (load balancing)
-- [ ] RabbitMQ monitoring panel
+- [x] RabbitMQ monitoring panel
 
 ## Exercise 3 - Event Processing with Kafka
 

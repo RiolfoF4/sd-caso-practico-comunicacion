@@ -12,6 +12,9 @@ services:
     build:
       context: .
       dockerfile: src/Services/OrdersService/Dockerfile
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
 
   rabbitmq:
     image: rabbitmq:3-management
@@ -19,3 +22,18 @@ services:
     ports:
       - "5672:5672"
       - "15672:15672"
+    healthcheck:
+      test: rabbitmq-diagnostics -q check_port_connectivity
+      interval: 5s
+      timeout: 10s
+      retries: 5
+      start_period: 10s
+
+  notificationservice:
+    image: ${DOCKER_REGISTRY-}notificationservice
+    build:
+      context: .
+      dockerfile: src/Services/NotificationService/Dockerfile
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
