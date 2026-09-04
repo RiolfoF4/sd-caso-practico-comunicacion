@@ -1,6 +1,7 @@
 <Solution>
   <Folder Name="/src/" />
   <Folder Name="/src/Services/">
+    <Project Path="src/Services/AnalyticsService/AnalyticsService.csproj" Id="27255b77-6a93-43e5-93ef-b12ad39190d0" />
     <Project Path="src/Services/InventoryService/InventoryService.csproj" Id="fb6c84fa-836d-40f8-a41a-3727ad16e5ef" />
     <Project Path="src/Services/NotificationService/NotificationService.csproj" Id="6b17e986-63da-4733-8f3c-38229b8ed0eb" />
     <Project Path="src/Services/OrdersService/OrdersService.csproj" Id="84a0c5cf-e79d-4f68-aa4a-399e7c72591f" />

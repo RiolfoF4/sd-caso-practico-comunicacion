@@ -10,5 +10,7 @@ var factory = new ConnectionFactory
 builder.Services.AddSingleton<IConnection>(factory.CreateConnectionAsync().GetAwaiter().GetResult());
 builder.Services.AddHostedService<OrderCreatedWorker>();
 
+builder.Services.AddHostedService<OrderEventsKafkaWorker>();
+
 var host = builder.Build();
 host.Run();

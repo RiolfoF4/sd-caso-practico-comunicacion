@@ -6,7 +6,8 @@
       "serviceActions": {
         "inventoryservice": "StartDebugging",
         "ordersservice": "StartDebugging",
-        "notificationservice": "StartDebugging"
+        "notificationservice": "StartDebugging",
+        "analyticsservice": "StartDebugging"
       }
     }
   }
