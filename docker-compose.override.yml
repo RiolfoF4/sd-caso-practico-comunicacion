@@ -11,14 +11,24 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=8080
       - Services__InventoryApi__BaseUrl=http://inventoryservice:8080
-      - RabbitMQ__HostName=rabbitmq 
+      - RabbitMQ__HostName=rabbitmq
+      - Kafka__BootstrapServers=kafka:29092
     ports:
       - "5000:8080"
 
   notificationservice:
     environment:
       - DOTNET_ENVIRONMENT=Development
-      - RabbitMQ__HostName=rabbitmq 
+      - RabbitMQ__HostName=rabbitmq
+      - Kafka__BootstrapServers=kafka:29092
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+
+  analyticsservice:
+    environment:
+      - DOTNET_ENVIRONMENT=Development
+      - Kafka__BootstrapServers=kafka:29092
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
