@@ -30,12 +30,17 @@
 
 ## Exercise 3 - Event Processing with Kafka
 
-- [ ] Set up Kafka + Zookeeper with Docker Compose
-- [ ] Publish order state changes (created, confirmed, shipped) to Kafka topic
-- [ ] NotificationService consumes from Kafka
-- [ ] New AnalyticsService consumes from Kafka
+- [x] Set up Kafka (KRaft) with Docker Compose
+- [x] Publish order state changes (created, confirmed, shipped) to Kafka topic
+- [x] NotificationService consumes from Kafka
+- [x] New AnalyticsService consumes from Kafka
 
 **Optional (from guide):**
-- [ ] Partitions and replication
-- [ ] Manual offsets and confirmations
+- [x] Partitions (3, keyed by OrderId)
+- [ ] Replication (single-node RF=1)
+- [x] Manual offsets and confirmations
 - [ ] Multiple consumers for parallelism
+
+## Extra
+
+- [ ] OrdersService crashes at startup if RabbitMQ is unavailable (blocking connection in `Program.cs`, no retry)
