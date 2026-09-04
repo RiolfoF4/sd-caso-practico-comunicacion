@@ -25,5 +25,24 @@ namespace OrdersService.Controllers
             return CreatedAtAction(nameof(CreateOrder), new { id = result.OrderId }, result);
         }
 
+        [HttpPost("{id}/confirm")]
+        public async Task<ActionResult<OrderResponse>> ConfirmOrder(int id)
+        {
+            var result = await _ordersService.ConfirmOrderAsync(id);
+            if (result is null)
+                return BadRequest(new { Message = "Pedido no encontrado o transición inválida" });
+
+            return Ok(result);
+        }
+
+        [HttpPost("{id}/ship")]
+        public async Task<ActionResult<OrderResponse>> ShipOrder(int id)
+        {
+            var result = await _ordersService.ShipOrderAsync(id);
+            if (result is null)
+                return BadRequest(new { Message = "Pedido no encontrado o transición inválida" });
+
+            return Ok(result);
+        }
     }
 }

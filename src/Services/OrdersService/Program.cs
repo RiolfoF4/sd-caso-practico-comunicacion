@@ -28,6 +28,8 @@ var factory = new ConnectionFactory
 builder.Services.AddSingleton<IConnection>(factory.CreateConnectionAsync().GetAwaiter().GetResult());
 builder.Services.AddSingleton<IOrdersPublisher, OrdersPublisher>();
 
+builder.Services.AddSingleton<IOrderEventsPublisher, KafkaOrderEventsPublisher>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
